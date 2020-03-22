@@ -10,7 +10,7 @@ export default function useVisualMode(initial) {
     }
     setMode(state)
   }
-  const back = function() {
+  const back = function(event) {
     if(history.length !== 0) {
       setMode(history.pop())
     }
@@ -21,6 +21,5 @@ export default function useVisualMode(initial) {
     mode,
     transition,
     back
-    //setState:((data)=>{setMode(data)})
   }
 }

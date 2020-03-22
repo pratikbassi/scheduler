@@ -25,21 +25,21 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
-  async function save(name, interviewer) {
+  function save(name, interviewer) {
     const interview = {
       student: name,
       interviewer
     };
-    transition(SAVING, true)
+    transition(SAVING)
     props.bookInterview(props.id, interview)
-    .then(() => {transition(SHOW)})
-    .catch(err => transition(ERROR_SAVE, true))
+    .then(() => {transition(SHOW); console.log('called 1')})
+    .catch(error => transition(ERROR_SAVE, true), console.log('called 2'))
   }
-  async function destroy(id) {
+  function destroy(id) {
     transition(DELETING, true)
     props.onDelete(id)
-    .then(() => {transition(EMPTY)})
-    .catch(err => transition(ERROR_DELETE, true))
+    .then(() => {transition(EMPTY); console.log('called')})
+    .catch(error => transition(ERROR_DELETE, true))
   }
 
 
@@ -72,7 +72,7 @@ export default function Appointment(props) {
         />
       )}
       {mode === SAVING && (
-        <Status message={'Saving!'}/> 
+        <Status message={'Saving!'} /> 
       )}{mode === DELETING && (
         <Status message={'Deleting!'}/> 
       )}

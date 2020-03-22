@@ -18,7 +18,6 @@ export default function useApplicationData(initial) {
       const promise3 = axios.get("/api/interviewers");
 
       Promise.all([promise1, promise2, promise3]).then(all => {
-        console.log(all[0].data)
         setState(prev => ({
           days: all[0].data,
           appointments: all[1].data,
@@ -43,12 +42,10 @@ export default function useApplicationData(initial) {
       
     
     
-    //console.log({student: interview.student, interviewer:interview.interviewer},'second')
     let axPromise = axios
       .put(`/api/appointments/${Number(id)}`, { interview: interview })
-      .then(setState({ ...state, appointments }))
+      .then(() => setState({ ...state, appointments }))
       .then(state.days[dayUpdate].spots -= 1)
-      .catch(err => err);
 
     return axPromise;
   }
@@ -63,9 +60,8 @@ export default function useApplicationData(initial) {
 
     let axPromise = axios
       .delete(`/api/appointments/${id}`)
-      .then(setState({ ...state, appointments }))
+      .then(() => (setState({ ...state, appointments })))
       .then(state.days[dayUpdate].spots += 1)
-      .catch(err => err);
 
     return axPromise;
   }
