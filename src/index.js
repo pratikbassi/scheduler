@@ -4,8 +4,6 @@ import ReactDOM from "react-dom";
 import "index.scss";
 
 import Application from "components/Application";
-//import tweets from './tweets.json'
-import "./styles.css"
 
 ReactDOM.render(<Application />, document.getElementById("root"));
 
@@ -61,7 +59,3 @@ ReactDOM.render(<Application />, document.getElementById("root"));
 //   return tweets;
 // }
 
-ReactDOM.render(
-  <Application />,
-  document.getElementById("root")
-);
